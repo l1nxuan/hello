@@ -1,0 +1,6 @@
+# https://github.com/llvm/llvm-project/issues/158538
+
+BasedOnStyle: WebKit
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+AlignTrailingComments: Always
+SortIncludes: Never

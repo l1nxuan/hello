@@ -1,0 +1,13 @@
+# teach your editor C++: https://clangd.llvm.org/config
+
+CompileFlags:
+  CompilationDatabase: build/debug
+  Compiler: arm-none-eabi-gcc
+  BuiltinHeaders: QueryDriver
+Index:
+  StandardLibrary: false
+Diagnostics:
+  Suppress:
+    - unused-includes
+    - unknown_typename
+    - unknown_typename_suggest
