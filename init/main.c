@@ -3,6 +3,8 @@
 #include "key.h"
 #include "sdram.h"
 #include "lcd.h"
+#include "eeprom.h"
+#include "touch.h"
 #include "dac.h"
 #include "adc.h"
 #include "tx_api.h"
@@ -77,6 +79,8 @@ int main(void)
     key_init();
     sdram_init();
     lcd_init();
+    eeprom_init();
+    touch_init();
     dac_init();
     adc_init();
 

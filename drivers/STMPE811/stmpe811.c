@@ -763,6 +763,7 @@ int32_t STMPE811_TS_Init(STMPE811_Object_t *pObj)
   ret += stmpe811_write_reg(&pObj->Ctx, STMPE811_SYS_CTRL2_REG, &tmp, 1);
 
   /* Select Sample Time, bit number and ADC Reference */
+  // SAMPLE_TIMEn: 80, MOD_12B: 12 bits, REF_SEL: Internal reference
   tmp = 0x48U;
   ret += stmpe811_write_reg(&pObj->Ctx, STMPE811_ADC_CTRL1_REG, &tmp, 1);
 
@@ -777,9 +778,9 @@ int32_t STMPE811_TS_Init(STMPE811_Object_t *pObj)
   /* Configuration:
   - Touch average control    : 4 samples
   - Touch delay time         : 500 uS
-  - Panel driver setting time: 500 uS
+  - Panel driver setting time: 1 mS
   */
-  tmp = 0x9AU;
+  tmp = 0x9BU;
   ret += stmpe811_write_reg(&pObj->Ctx, STMPE811_TSC_CFG_REG, &tmp, 1);
 
   /* Configure the Touch FIFO threshold: single point reading */

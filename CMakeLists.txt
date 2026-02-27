@@ -40,14 +40,17 @@ target_sources(${PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/fmc.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/hal_assert.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/hal_timebase.c
+    ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/i2c.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/ltdc.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/nvic.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/mcu/tim.c
+    ${PROJECT_SOURCE_DIR}/boards/armfly_v6/eeprom.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/key.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/latch_io.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/lcd.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/led.c
     ${PROJECT_SOURCE_DIR}/boards/armfly_v6/sdram.c
+    ${PROJECT_SOURCE_DIR}/boards/armfly_v6/touch.c
 
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT/SEGGER_RTT.c
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT/SEGGER_RTT_printf.c
@@ -71,6 +74,10 @@ target_sources(${PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac_ex.c
     ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
     # ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
+    ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
+    ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c
+    ${PROJECT_SOURCE_DIR}/drivers/STMPE811/stmpe811_reg.c
+    ${PROJECT_SOURCE_DIR}/drivers/STMPE811/stmpe811.c
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/include
@@ -90,6 +97,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/drivers/CMSIS/Core/Include
     ${PROJECT_SOURCE_DIR}/drivers/Device/ST/STM32F4xx/Include
     ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Inc
+    ${PROJECT_SOURCE_DIR}/drivers/STMPE811
 )
 
 # threadx
