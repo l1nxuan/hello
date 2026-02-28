@@ -12,7 +12,7 @@
 TX_THREAD display_1_thread __attribute__((section(".ccmram")));
 UCHAR display_1_thread_stack[DISPLAY_1_THREAD_STACK_SIZE] __attribute__((section(".ccmram")));
 
-uint32_t refresh_events; // TODO: Use TX_EVENT_FLAGS_GROUP instead of, but EEROR
+TX_EVENT_FLAGS_GROUP refresh_events; // couldnt place in CCM RAM
 
 lv_display_t* display_1;
 
@@ -33,9 +33,14 @@ VOID display_1_thread_entry(ULONG thread_input)
     lv_sleep_ms(330);
     lcd_backlight_on();
 
+    (VOID) tx_event_flags_create(&refresh_events, "refresh events");
+
     while (1) {
-        if (refresh_events & REFRESH_EVENTS_DATA_READY) {
-            refresh_events &= ~REFRESH_EVENTS_DATA_READY; // read-to-clear
+        ULONG actual_events;
+        UINT ret = tx_event_flags_get(&refresh_events, REFRESH_EVENTS_DATA_READY, TX_OR_CLEAR, &actual_events,
+            TX_NO_WAIT);
+
+        if (ret == TX_SUCCESS && (actual_events & REFRESH_EVENTS_DATA_READY)) {
             lv_chart_refresh(objects.waveform_area);
         }
 

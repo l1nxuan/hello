@@ -10,7 +10,7 @@
 #include "dac.h"
 
 TX_THREAD convert_thread __attribute__((section(".ccmram")));
-UCHAR convert_thread_stack[CONVERT_THREAD_STACK_SIZE] __attribute__((section(".ccmram")));
+UCHAR convert_thread_stack[SAMPLE_THREAD_STACK_SIZE] __attribute__((section(".ccmram")));
 
 TX_SEMAPHORE convcplt_sem __attribute__((section(".ccmram")));
 
@@ -45,7 +45,7 @@ VOID sample_thread_entry(ULONG thread_input)
 void sample_thread_create(void)
 {
     (VOID) tx_thread_create(&convert_thread, "convert", sample_thread_entry, 0,
-        convert_thread_stack, CONVERT_THREAD_STACK_SIZE, CONVERT_THREAD_PRIORITY, CONVERT_THREAD_PRIORITY,
+        convert_thread_stack, SAMPLE_THREAD_STACK_SIZE, SAMPLE_THREAD_PRIORITY, SAMPLE_THREAD_PRIORITY,
         TX_NO_TIME_SLICE, TX_AUTO_START);
 }
 
@@ -79,7 +79,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
         serie_1_buffer_idx--;
         if (serie_1_buffer_idx == 0) {
             serie_1_buffer_idx = 512 / 128;
-            refresh_events |= REFRESH_EVENTS_DATA_READY;
+            tx_event_flags_set(&refresh_events, REFRESH_EVENTS_DATA_READY, TX_OR);
         }
     }
 }

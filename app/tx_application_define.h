@@ -10,11 +10,11 @@ extern "C" {
 
 // threadx stack size
 #define DISPLAY_1_THREAD_STACK_SIZE (4 * 1024) // bytes
-#define CONVERT_THREAD_STACK_SIZE   (4 * 1024)
+#define SAMPLE_THREAD_STACK_SIZE    (4 * 1024)
 
 // threadx priority
 #define DISPLAY_1_THREAD_PRIORITY   30
-#define CONVERT_THREAD_PRIORITY     0
+#define SAMPLE_THREAD_PRIORITY      0
 
 #ifdef __cplusplus
 }
