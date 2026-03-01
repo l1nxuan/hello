@@ -111,10 +111,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/threadx/ports_arch/ARMv7-M/gnu)
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/threadx/common)
 
-# guix
-# add_subdirectory(${PROJECT_SOURCE_DIR}/lib/guix/ports/cortex_m4/gnu)
-# add_subdirectory(${PROJECT_SOURCE_DIR}/lib/guix/common)
-
 # lvgl
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/lvgl)
 
@@ -123,7 +119,6 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     STM32F429xx
     USE_HAL_DRIVER
     TX_INCLUDE_USER_DEFINE_FILE
-    # GX_INCLUDE_USER_DEFINE_FILE
     LV_LVGL_H_INCLUDE_SIMPLE
     LV_KCONFIG_IGNORE
     # LV_DISABLE_API_MAPPING
