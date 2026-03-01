@@ -84,6 +84,8 @@ TX_THREAD  *current_thread;
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_THREAD_SUSPEND, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
 #ifndef TX_INLINE_THREAD_RESUME_SUSPEND
 
     /* Lockout interrupts while the thread is being suspended.  */
@@ -167,6 +169,8 @@ UINT        status;
             status =  TX_SUCCESS;
 #else
 
+            TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SUSPEND, TX_SUCCESS);
+
             /* If MISRA is not enabled, return directly.  */
             return(TX_SUCCESS);
 #endif
@@ -202,6 +206,8 @@ UINT        status;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SUSPEND, status);
 
     /* Always return success, since this function does not perform error
        checking.  */
@@ -514,6 +520,8 @@ ULONG                       time_stamp =  ((ULONG) 0);
                         _tx_thread_system_return();
                     }
 
+                    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SUSPEND, TX_SUCCESS);
+
                     /* Return to caller.  */
                     return(TX_SUCCESS);
 #endif
@@ -708,6 +716,8 @@ ULONG                       time_stamp =  ((ULONG) 0);
                     _tx_thread_system_return();
                 }
 
+                TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SUSPEND, TX_SUCCESS);
+
                 /* Return to caller.  */
                 return(TX_SUCCESS);
 #endif
@@ -840,6 +850,8 @@ ULONG                       time_stamp =  ((ULONG) 0);
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SUSPEND, status);
 
     /* Return completion status.  */
     return(status);

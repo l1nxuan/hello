@@ -96,6 +96,8 @@ TX_THREAD       *suspended_thread;
 UINT            inheritance_priority;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_MUTEX_PUT, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Setup status to indicate the processing is not complete.  */
     status =  TX_NOT_DONE;
 
@@ -648,6 +650,8 @@ UINT            inheritance_priority;
         /* Caller does not own the mutex.  */
         status =  TX_NOT_OWNED;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_PUT, status);
 
     /* Return the completion status.  */
     return(status);

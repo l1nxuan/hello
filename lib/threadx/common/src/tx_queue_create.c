@@ -85,6 +85,8 @@ TX_QUEUE        *next_queue;
 TX_QUEUE        *previous_queue;
 
 
+    TRACE_RECORD_U32x4(TRACE_API_TX_QUEUE_CREATE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr), TX_POINTER_TO_ULONG_CONVERT(queue_ptr), message_size, queue_size);
+
     /* Initialize queue control block to all zeros.  */
     TX_MEMSET(queue_ptr, 0, (sizeof(TX_QUEUE)));
 
@@ -159,11 +161,15 @@ TX_QUEUE        *previous_queue;
     /* If trace is enabled, insert this event into the trace buffer.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_QUEUE_CREATE, queue_ptr, message_size, TX_POINTER_TO_ULONG_CONVERT(queue_start), queue_size, TX_TRACE_QUEUE_EVENTS)
 
+    TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(queue_ptr), queue_ptr->tx_queue_name)
+
     /* Log this kernel call.  */
     TX_EL_QUEUE_CREATE_INSERT
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_CREATE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

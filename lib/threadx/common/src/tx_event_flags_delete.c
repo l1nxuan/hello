@@ -85,6 +85,8 @@ TX_EVENT_FLAGS_GROUP    *next_group;
 TX_EVENT_FLAGS_GROUP    *previous_group;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_EVENT_FLAGS_DELETE, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Disable interrupts to remove the group from the created list.  */
     TX_DISABLE
 
@@ -201,6 +203,8 @@ TX_EVENT_FLAGS_GROUP    *previous_group;
 
     /* Check for preemption.  */
     _tx_thread_system_preempt_check();
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_DELETE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

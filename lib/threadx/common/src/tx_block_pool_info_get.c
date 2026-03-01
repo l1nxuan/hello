@@ -84,6 +84,8 @@ UINT  _tx_block_pool_info_get(TX_BLOCK_POOL *pool_ptr, CHAR **name, ULONG *avail
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BLOCK_POOL_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -140,6 +142,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_POOL_INFO_GET, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

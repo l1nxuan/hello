@@ -1,10 +1,10 @@
 /***************************************************************************
- * Copyright (c) 2024 Microsoft Corporation 
- * 
+ * Copyright (c) 2024 Microsoft Corporation
+ *
  * This program and the accompanying materials are made available under the
  * terms of the MIT License which is available at
  * https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: MIT
  **************************************************************************/
 
@@ -133,6 +133,7 @@ extern   "C" {
 
 /* Include the port-specific data type file.  */
 
+#include "SEGGER_SYSVIEW_ThreadX.h"
 #include "tx_port.h"
 
 #if (defined(TX_EXECUTION_PROFILE_ENABLE) && !defined(TX_ENABLE_EXECUTION_CHANGE_NOTIFY))

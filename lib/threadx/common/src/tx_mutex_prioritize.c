@@ -88,6 +88,8 @@ UINT            status;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_MUTEX_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -255,9 +257,13 @@ UINT            status;
     /* Define extended processing option.  */
     status =  TX_MUTEX_PRIORITIZE_MISRA_EXTENSION(status);
 
+    EGGER_SYSVIEW_RecordEndCallU32(TRACE_API_TX_MUTEX_PRIORITIZE, status);
+
     /* Return completion status.  */
     return(status);
 #else
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_PRIORITIZE, TX_SUCCESS);
 
     /* Return successful completion.  */
     return(TX_SUCCESS);

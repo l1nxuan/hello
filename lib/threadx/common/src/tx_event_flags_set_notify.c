@@ -73,6 +73,7 @@
 /**************************************************************************/
 UINT  _tx_event_flags_set_notify(TX_EVENT_FLAGS_GROUP *group_ptr, VOID (*events_set_notify)(TX_EVENT_FLAGS_GROUP *notify_group_ptr))
 {
+    TRACE_RECORD_U32(TRACE_API_TX_EVENT_FLAGS_NOTIFY, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
 
 #ifdef TX_DISABLE_NOTIFY_CALLBACKS
 
@@ -100,6 +101,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_NOTIFY,TX_SUCCESS);
 
     /* Return success to caller.  */
     return(TX_SUCCESS);

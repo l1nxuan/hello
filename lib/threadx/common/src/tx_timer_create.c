@@ -85,6 +85,8 @@ TX_TIMER        *next_timer;
 TX_TIMER        *previous_timer;
 
 
+	TRACE_RECORD_U32x5(TRACE_API_TX_TIMER_CREATE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr), TX_POINTER_TO_ULONG_CONVERT(timer_ptr), initial_ticks, reschedule_ticks, auto_activate);
+
     /* Initialize timer control block to all zeros.  */
     TX_MEMSET(timer_ptr, 0, (sizeof(TX_TIMER)));
 
@@ -139,6 +141,8 @@ TX_TIMER        *previous_timer;
     /* If trace is enabled, insert this call in the trace buffer.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_TIMER_CREATE, timer_ptr, initial_ticks, reschedule_ticks, auto_activate, TX_TRACE_TIMER_EVENTS)
 
+    TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(&(timer_ptr->tx_timer_internal)), timer_ptr->tx_timer_name)
+
     /* Log this kernel call.  */
     TX_EL_TIMER_CREATE_INSERT
 
@@ -161,6 +165,8 @@ TX_TIMER        *previous_timer;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIMER_CREATE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

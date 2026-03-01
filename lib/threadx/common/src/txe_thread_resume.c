@@ -74,6 +74,8 @@ UINT  _txe_thread_resume(TX_THREAD *thread_ptr)
 UINT    status;
 
 
+	TRACE_RECORD_U32(TRACE_API_TXE_THREAD_RESUME, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -95,6 +97,8 @@ UINT    status;
         /* Call actual thread resume function.  */
         status =  _tx_thread_resume(thread_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_RESUME, status);
 
     /* Return completion status.  */
     return(status);

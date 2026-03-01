@@ -77,6 +77,8 @@ UINT  _txe_thread_terminate(TX_THREAD *thread_ptr)
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_THREAD_TERMINATE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -106,6 +108,8 @@ UINT        status;
         /* Call actual thread terminate function.  */
         status =  _tx_thread_terminate(thread_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_TERMINATE, status);
 
     /* Return completion status.  */
     return(status);

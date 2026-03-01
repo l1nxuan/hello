@@ -86,6 +86,8 @@ UINT  _txe_block_pool_info_get(TX_BLOCK_POOL *pool_ptr, CHAR **name, ULONG *avai
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_BLOCK_POOL_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Check for an invalid block pool pointer.  */
     if (pool_ptr == TX_NULL)
     {
@@ -108,6 +110,8 @@ UINT    status;
         status =  _tx_block_pool_info_get(pool_ptr, name, available_blocks,
                         total_blocks, first_suspended, suspended_count, next_pool);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BLOCK_POOL_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

@@ -90,6 +90,8 @@ TX_THREAD                   *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TXE_EVENT_FLAGS_CREATE, TX_POINTER_TO_ULONG_CONVERT(group_ptr), TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -197,6 +199,8 @@ TX_THREAD                   *thread_ptr;
         /* Call actual event flags create function.  */
         status =  _tx_event_flags_create(group_ptr, name_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_EVENT_FLAGS_CREATE, status);
 
     /* Return completion status.  */
     return(status);

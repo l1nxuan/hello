@@ -74,10 +74,14 @@
 UINT  _tx_queue_send_notify(TX_QUEUE *queue_ptr, VOID (*queue_send_notify)(TX_QUEUE *notify_queue_ptr))
 {
 
+    TRACE_RECORD_U32(TRACE_API_TX_QUEUE_NOTIFY, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
 #ifdef TX_DISABLE_NOTIFY_CALLBACKS
 
     TX_QUEUE_NOT_USED(queue_ptr);
     TX_QUEUE_SEND_NOTIFY_NOT_USED(queue_send_notify);
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_NOTIFY, TX_FEATURE_NOT_ENABLED);
 
     /* Feature is not enabled, return error.  */
     return(TX_FEATURE_NOT_ENABLED);
@@ -100,6 +104,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_NOTIFY, TX_SUCCESS);
 
     /* Return success to caller.  */
     return(TX_SUCCESS);

@@ -106,6 +106,8 @@ UINT            interrupted_set_request;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_EVENT_FLAGS_GET, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Disable interrupts to examine the event flags group.  */
     TX_DISABLE
 
@@ -399,6 +401,8 @@ UINT            interrupted_set_request;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_GET, status);
 
     /* Return completion status.  */
     return(status);

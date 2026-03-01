@@ -85,6 +85,8 @@ UINT  _txe_semaphore_info_get(TX_SEMAPHORE *semaphore_ptr, CHAR **name, ULONG *c
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_SEMAPHORE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr));
+
     /* Check for an invalid semaphore pointer.  */
     if (semaphore_ptr == TX_NULL)
     {
@@ -107,6 +109,8 @@ UINT        status;
         status =  _tx_semaphore_info_get(semaphore_ptr, name, current_value, first_suspended,
                                                                 suspended_count, next_semaphore);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_SEMAPHORE_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

@@ -55,6 +55,9 @@ target_sources(${PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT/SEGGER_RTT.c
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT/SEGGER_RTT_printf.c
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT/SEGGER_RTT_ASM_ARMv7M.S
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/SYSVIEW/SEGGER_SYSVIEW.c
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/Sample/ThreadX/Config/Cortex-M/SEGGER_SYSVIEW_Config_ThreadX.c
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/Sample/ThreadX/SEGGER_SYSVIEW_ThreadX.c
     ${PROJECT_SOURCE_DIR}/lib/swtimer/swtimer.c
 
     ${PROJECT_SOURCE_DIR}/drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
@@ -92,6 +95,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
     ${PROJECT_SOURCE_DIR}/lib/RTT/Config
     ${PROJECT_SOURCE_DIR}/lib/RTT/RTT
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/Config
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/SEGGER
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/SYSVIEW
+    ${PROJECT_SOURCE_DIR}/lib/SystemView/Sample/ThreadX
     ${PROJECT_SOURCE_DIR}/lib/swtimer
 
     ${PROJECT_SOURCE_DIR}/drivers/CMSIS/Core/Include
@@ -120,6 +127,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     LV_LVGL_H_INCLUDE_SIMPLE
     LV_KCONFIG_IGNORE
     # LV_DISABLE_API_MAPPING
+    ENABLE_TRACE_API
     $<$<CONFIG:Debug>:DEBUG>
 )
 target_compile_options(${PROJECT_NAME} PRIVATE

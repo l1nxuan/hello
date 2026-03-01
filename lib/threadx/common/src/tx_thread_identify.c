@@ -80,6 +80,7 @@ TX_THREAD       *thread_ptr;
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_THREAD_IDENTIFY);
     /* Disable interrupts to put the timer on the created list.  */
     TX_DISABLE
 
@@ -97,6 +98,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_IDENTIFY, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
 
     /* Return the current thread pointer.  */
     return(thread_ptr);

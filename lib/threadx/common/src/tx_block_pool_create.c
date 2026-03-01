@@ -89,6 +89,8 @@ TX_BLOCK_POOL       *next_pool;
 TX_BLOCK_POOL       *previous_pool;
 
 
+    TRACE_RECORD_U32x4(TRACE_API_TX_BLOCK_POOL_CREATE	, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), TX_POINTER_TO_ULONG_CONVERT(pool_ptr), block_size, pool_size);
+
     /* Initialize block pool control block to all zeros.  */
     TX_MEMSET(pool_ptr, 0, (sizeof(TX_BLOCK_POOL)));
 
@@ -192,6 +194,8 @@ TX_BLOCK_POOL       *previous_pool;
         /* If trace is enabled, insert this event into the trace buffer.  */
         TX_TRACE_IN_LINE_INSERT(TX_TRACE_BLOCK_POOL_CREATE, pool_ptr, TX_POINTER_TO_ULONG_CONVERT(pool_start), blocks, block_size, TX_TRACE_BLOCK_POOL_EVENTS)
 
+        TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(pool_ptr), pool_ptr->tx_block_pool_name)
+
         /* Log this kernel call.  */
         TX_EL_BLOCK_POOL_CREATE_INSERT
 
@@ -207,6 +211,8 @@ TX_BLOCK_POOL       *previous_pool;
         /* Not enough memory for one block, return appropriate error.  */
         status =  TX_SIZE_ERROR;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_POOL_CREATE	, status);
 
     /* Return completion status.  */
     return(status);

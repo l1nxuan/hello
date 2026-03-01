@@ -89,6 +89,8 @@ UINT        status;
 ULONG       suspension_sequence;
 
 
+	TRACE_RECORD_U32(TRACE_API_TX_THREAD_TERMINATE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Default to successful completion.  */
     status =  TX_SUCCESS;
 
@@ -304,6 +306,8 @@ ULONG       suspension_sequence;
 
     /* Check for preemption.  */
     _tx_thread_system_preempt_check();
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_TERMINATE, status);
 
     /* Return completion status.  */
     return(status);

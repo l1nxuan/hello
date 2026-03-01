@@ -74,6 +74,8 @@ UINT  _txe_mutex_prioritize(TX_MUTEX *mutex_ptr)
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_MUTEX_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Check for an invalid mutex pointer.  */
     if (mutex_ptr == TX_NULL)
     {
@@ -95,6 +97,8 @@ UINT    status;
         /* Call actual mutex prioritize function.  */
         status =  _tx_mutex_prioritize(mutex_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_MUTEX_PRIORITIZE, status);
 
     /* Return completion status.  */
     return(status);

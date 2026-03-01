@@ -79,6 +79,8 @@ UINT  _txe_thread_time_slice_change(TX_THREAD *thread_ptr, ULONG new_time_slice,
 UINT        status;
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TXE_THREAD_TIME_SLICE_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_time_slice);
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -116,6 +118,8 @@ UINT        status;
         /* Call actual change time slice function.  */
         status =  _tx_thread_time_slice_change(thread_ptr, new_time_slice, old_time_slice);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_TIME_SLICE_CHANGE, status);
 
     /* Return completion status.  */
     return(status);

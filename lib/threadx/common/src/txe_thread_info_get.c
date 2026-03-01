@@ -89,6 +89,8 @@ UINT  _txe_thread_info_get(TX_THREAD *thread_ptr, CHAR **name, UINT *state, ULON
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_THREAD_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -111,6 +113,8 @@ UINT    status;
         status =  _tx_thread_info_get(thread_ptr, name, state, run_count, priority, preemption_threshold,
                             time_slice, next_thread, next_suspended_thread);
     }
+
+     TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

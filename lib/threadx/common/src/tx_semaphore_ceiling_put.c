@@ -89,6 +89,8 @@ TX_THREAD       *previous_thread;
 UINT            status;
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_SEMAPHORE_CEILING_PUT, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), ceiling);
+
     /* Default the status to TX_SUCCESS.  */
     status =  TX_SUCCESS;
 
@@ -237,6 +239,8 @@ UINT            status;
         }
 #endif
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_SEMAPHORE_CEILING_PUT, status);
 
     /* Return successful completion.  */
     return(status);

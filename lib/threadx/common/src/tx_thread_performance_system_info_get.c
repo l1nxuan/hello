@@ -107,6 +107,8 @@ UINT  _tx_thread_performance_system_info_get(ULONG *resumptions, ULONG *suspensi
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_THREAD_PERFOMANCE_INFO_GET);
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -207,6 +209,8 @@ TX_INTERRUPT_SAVE_AREA
 UINT        status;
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_THREAD_PERFOMANCE_SYSTEM_INFO_GET);
+
     /* Access input arguments just for the sake of lint, MISRA, etc.  */
     if (resumptions != TX_NULL)
     {
@@ -280,6 +284,8 @@ UINT        status;
         /* Not enabled, return error.  */
         status =  TX_FEATURE_NOT_ENABLED;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_PERFOMANCE_SYSTEM_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

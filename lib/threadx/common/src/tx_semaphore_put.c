@@ -86,6 +86,8 @@ TX_THREAD       *next_thread;
 TX_THREAD       *previous_thread;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_SEMAPHORE_PUT, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr));
+
     /* Disable interrupts to put an instance back to the semaphore.  */
     TX_DISABLE
 
@@ -216,6 +218,8 @@ TX_THREAD       *previous_thread;
         }
 #endif
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_SEMAPHORE_PUT, TX_SUCCESS);
 
     /* Return successful completion.  */
     return(TX_SUCCESS);

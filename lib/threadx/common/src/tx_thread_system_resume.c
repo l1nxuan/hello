@@ -135,6 +135,8 @@ UINT            map_index;
 
     /* Log the thread status change.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_THREAD_RESUME, thread_ptr, thread_ptr -> tx_thread_state, TX_POINTER_TO_ULONG_CONVERT(&execute_ptr), TX_POINTER_TO_ULONG_CONVERT(_tx_thread_execute_ptr), TX_TRACE_INTERNAL_EVENTS)
+    TRACE_ON_TASK_START_READY(TX_POINTER_TO_ULONG_CONVERT(thread_ptr->tx_thread_ready_next))
+
 
 #ifdef TX_ENABLE_EVENT_TRACE
 
@@ -577,6 +579,7 @@ UINT            state;
 
         /* Log the thread status change.  */
         TX_TRACE_IN_LINE_INSERT(TX_TRACE_THREAD_RESUME, thread_ptr, ((ULONG) state), TX_POINTER_TO_ULONG_CONVERT(&temp_state), TX_POINTER_TO_ULONG_CONVERT(_tx_thread_execute_ptr), TX_TRACE_INTERNAL_EVENTS)
+        TRACE_ON_TASK_START_READY(thread_ptr->tx_thread_ready_next)
 
         /* Make sure the type of suspension under way is not a terminate or
            thread completion.  In either of these cases, do not void the
@@ -648,6 +651,7 @@ UINT            map_index;
 
     /* Log the thread status change.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_THREAD_RESUME, thread_ptr, ((ULONG) thread_ptr -> tx_thread_state), TX_POINTER_TO_ULONG_CONVERT(&execute_ptr), TX_POINTER_TO_ULONG_CONVERT(_tx_thread_execute_ptr), TX_TRACE_INTERNAL_EVENTS)
+    TRACE_ON_TASK_START_READY(thread_ptr->tx_thread_ready_next)
 
 #ifdef TX_ENABLE_EVENT_TRACE
 

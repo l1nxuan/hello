@@ -85,6 +85,8 @@ UINT            status;
 ULONG           suspension_sequence;
 
 
+	TRACE_RECORD_U32(TRACE_API_TX_THREAD_WAIT_ABORT, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -239,6 +241,8 @@ ULONG           suspension_sequence;
             status =  TX_WAIT_ABORT_ERROR;
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_WAIT_ABORT, status);
 
     /* Return completion status.  */
     return(status);

@@ -83,6 +83,8 @@ UINT            suspended_count;
 TX_THREAD       *thread_ptr;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_QUEUE_FLUSH, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Initialize the suspended count and list.  */
     suspended_count =  TX_NO_SUSPENSIONS;
     suspension_list =  TX_NULL;
@@ -199,6 +201,8 @@ TX_THREAD       *thread_ptr;
         /* Check for preemption.  */
         _tx_thread_system_preempt_check();
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_FLUSH, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

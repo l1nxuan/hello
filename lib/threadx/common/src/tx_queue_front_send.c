@@ -94,6 +94,8 @@ VOID            (*queue_send_notify)(struct TX_QUEUE_STRUCT *notify_queue_ptr);
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_QUEUE_FRONT_SEND, TX_POINTER_TO_ULONG_CONVERT(queue_ptr), TX_POINTER_TO_ULONG_CONVERT(source_ptr), wait_option);
+
     /* Default the status to TX_SUCCESS.  */
     status =  TX_SUCCESS;
 
@@ -415,6 +417,8 @@ VOID            (*queue_send_notify)(struct TX_QUEUE_STRUCT *notify_queue_ptr);
         /* No room in queue and no suspension requested, return error completion.  */
         status =  TX_QUEUE_FULL;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_FRONT_SEND, status);
 
     /* Return completion status.  */
     return(status);

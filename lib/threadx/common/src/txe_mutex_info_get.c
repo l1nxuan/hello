@@ -86,6 +86,7 @@ UINT  _txe_mutex_info_get(TX_MUTEX *mutex_ptr, CHAR **name, ULONG *count, TX_THR
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_MUTEX_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
     /* Check for an invalid mutex pointer.  */
     if (mutex_ptr == TX_NULL)
     {
@@ -108,6 +109,8 @@ UINT        status;
         status =  _tx_mutex_info_get(mutex_ptr, name, count, owner, first_suspended,
                                                             suspended_count, next_mutex);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_MUTEX_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

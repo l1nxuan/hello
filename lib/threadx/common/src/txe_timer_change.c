@@ -80,6 +80,8 @@ UINT  _txe_timer_change(TX_TIMER *timer_ptr, ULONG initial_ticks, ULONG reschedu
 
 UINT    status;
 
+	TRACE_RECORD_U32x3(TRACE_API_TXE_TIMER_CHANGE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr), initial_ticks, reschedule_ticks);
+
 
     /* Check for an invalid timer pointer.  */
     if (timer_ptr == TX_NULL)
@@ -118,6 +120,8 @@ UINT    status;
         /* Call actual application timer function.  */
         status =  _tx_timer_change(timer_ptr, initial_ticks, reschedule_ticks);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_TIMER_CHANGE, status);
 
     /* Return completion status.  */
     return(status);

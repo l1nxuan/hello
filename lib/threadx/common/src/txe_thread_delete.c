@@ -75,6 +75,8 @@ UINT  _txe_thread_delete(TX_THREAD *thread_ptr)
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_THREAD_DELETE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for invalid caller of this function.  */
     if (TX_THREAD_GET_SYSTEM_STATE() != ((ULONG) 0))
     {
@@ -104,6 +106,8 @@ UINT        status;
         /* Call actual thread delete function.  */
         status =  _tx_thread_delete(thread_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_DELETE, status);
 
     /* Return completion status.  */
     return(status);

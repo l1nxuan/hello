@@ -82,6 +82,8 @@ ULONG   another_temp_time =  ((ULONG) 0);
 ULONG   temp_time;
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_TIME_GET);
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -96,6 +98,8 @@ ULONG   temp_time;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIME_GET, temp_time);
 
     /* Return the time.  */
     return(temp_time);

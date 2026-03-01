@@ -84,6 +84,8 @@ UINT  _txe_queue_info_get(TX_QUEUE *queue_ptr, CHAR **name, ULONG *enqueued, ULO
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_QUEUE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Check for an invalid queue pointer.  */
     if (queue_ptr == TX_NULL)
     {
@@ -106,6 +108,8 @@ UINT    status;
         status =  _tx_queue_info_get(queue_ptr, name, enqueued, available_storage, first_suspended,
                                                                     suspended_count, next_queue);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_QUEUE_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

@@ -85,6 +85,8 @@ UINT  _tx_mutex_info_get(TX_MUTEX *mutex_ptr, CHAR **name, ULONG *count, TX_THRE
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_MUTEX_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -141,6 +143,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_INFO_GET, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

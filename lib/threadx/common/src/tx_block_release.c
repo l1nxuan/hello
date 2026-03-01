@@ -85,6 +85,7 @@ UINT                suspended_count;
 TX_THREAD           *next_thread;
 TX_THREAD           *previous_thread;
 
+    TRACE_RECORD_U32(TRACE_API_TX_BLOCK_RELEASE, TX_POINTER_TO_ULONG_CONVERT(block_ptr));
 
     /* Disable interrupts to put this block back in the pool.  */
     TX_DISABLE
@@ -198,6 +199,8 @@ TX_THREAD           *previous_thread;
         /* Restore interrupts.  */
         TX_RESTORE
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_RELEASE, TX_SUCCESS);
 
     /* Return successful completion status.  */
     return(TX_SUCCESS);

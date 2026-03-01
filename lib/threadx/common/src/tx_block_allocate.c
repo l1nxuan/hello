@@ -101,6 +101,8 @@ ULONG                       lower_tbu;
 #endif
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_BLOCK_ALLOCATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), wait_option);
+
     /* Disable interrupts to get a block from the pool.  */
     TX_DISABLE
 
@@ -366,6 +368,8 @@ ULONG                       lower_tbu;
             TX_RESTORE
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_ALLOCATE, status);
 
     /* Return completion status.  */
     return(status);

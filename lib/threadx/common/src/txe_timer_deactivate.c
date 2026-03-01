@@ -75,6 +75,8 @@ UINT  _txe_timer_deactivate(TX_TIMER *timer_ptr)
 UINT    status;
 
 
+	TRACE_RECORD_U32(TRACE_API_TXE_TIMER_DEACTIVATE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
     /* Check for an invalid timer pointer.  */
     if (timer_ptr == TX_NULL)
     {
@@ -96,6 +98,8 @@ UINT    status;
         /* Call actual application timer deactivate function.  */
         status =  _tx_timer_deactivate(timer_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_TIMER_DEACTIVATE, status);
 
     /* Return completion status.  */
     return(status);

@@ -77,6 +77,8 @@ UINT  _txe_event_flags_set_notify(TX_EVENT_FLAGS_GROUP *group_ptr, VOID (*events
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_EVENT_FLAGS_NOTIFY, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Check for an invalid group pointer.  */
     if (group_ptr == TX_NULL)
     {
@@ -98,6 +100,8 @@ UINT    status;
         /* Call actual event flags set notify function.  */
         status =  _tx_event_flags_set_notify(group_ptr, events_set_notify);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_EVENT_FLAGS_NOTIFY, status);
 
     /* Return completion status.  */
     return(status);

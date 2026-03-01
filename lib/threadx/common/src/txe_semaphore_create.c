@@ -90,6 +90,8 @@ TX_THREAD           *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TXE_SEMAPHORE_CREATE, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), initial_count);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -202,6 +204,8 @@ TX_THREAD           *thread_ptr;
         /* Call actual semaphore create function.  */
         status =  _tx_semaphore_create(semaphore_ptr, name_ptr, initial_count);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_SEMAPHORE_CREATE, status);
 
     /* Return completion status.  */
     return(status);

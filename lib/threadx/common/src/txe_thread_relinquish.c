@@ -74,6 +74,8 @@ VOID  _txe_thread_relinquish(VOID)
 TX_THREAD   *current_thread;
 
 
+    TRACE_RECORD_VOID(TRACE_API_TXE_THREAD_RELINQUISH);
+
     /* Pickup thread pointer.  */
     TX_THREAD_GET_CURRENT(current_thread)
 
@@ -89,5 +91,7 @@ TX_THREAD   *current_thread;
             _tx_thread_relinquish();
         }
     }
+
+    TRACE_RECORD_END_CALL(TRACE_API_TXE_THREAD_RELINQUISH);
 }
 

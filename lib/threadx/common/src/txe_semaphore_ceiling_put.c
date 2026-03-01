@@ -78,6 +78,8 @@ UINT  _txe_semaphore_ceiling_put(TX_SEMAPHORE *semaphore_ptr, ULONG ceiling)
 UINT        status;
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TXE_SEMAPHORE_CEILING_PUT, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), ceiling);
+
     /* Check for an invalid semaphore pointer.  */
     if (semaphore_ptr == TX_NULL)
     {
@@ -107,6 +109,8 @@ UINT        status;
         /* Call actual semaphore ceiling put function.  */
         status =  _tx_semaphore_ceiling_put(semaphore_ptr, ceiling);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_SEMAPHORE_CEILING_PUT, status);
 
     /* Return completion status.  */
     return(status);

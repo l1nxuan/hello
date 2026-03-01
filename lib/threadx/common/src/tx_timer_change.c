@@ -77,6 +77,8 @@ UINT  _tx_timer_change(TX_TIMER *timer_ptr, ULONG initial_ticks, ULONG reschedul
 TX_INTERRUPT_SAVE_AREA
 
 
+	TRACE_RECORD_U32x3(TRACE_API_TX_TIMER_CHANGE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr), initial_ticks, reschedule_ticks);
+
     /* Disable interrupts to put the timer on the created list.  */
     TX_DISABLE
 
@@ -97,6 +99,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIMER_CHANGE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

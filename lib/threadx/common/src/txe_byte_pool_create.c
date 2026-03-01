@@ -93,6 +93,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TXE_BYTE_POOL_CREATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), TX_POINTER_TO_ULONG_CONVERT(pool_ptr), pool_size);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -216,6 +218,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual byte pool create function.  */
         status =  _tx_byte_pool_create(pool_ptr, name_ptr, pool_start, pool_size);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BYTE_POOL_CREATE, status);
 
     /* Return completion status.  */
     return(status);

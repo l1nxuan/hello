@@ -303,7 +303,9 @@ TX_TIMER                    *timer_ptr;
                 if (timeout_function != TX_NULL)
                 {
 
+                    TRACE_RECORD_ENTER_TIMER(TX_POINTER_TO_ULONG_CONVERT(current_timer));
                     (timeout_function) (timeout_param);
+                    TRACE_RECORD_EXIT_TIMER();
                 }
 
                 /* Lockout interrupts again.  */

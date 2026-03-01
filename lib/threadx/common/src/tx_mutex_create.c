@@ -81,6 +81,8 @@ TX_MUTEX        *next_mutex;
 TX_MUTEX        *previous_mutex;
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_MUTEX_CREATE, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr), TX_POINTER_TO_ULONG_CONVERT(mutex_ptr), inherit);
+
     /* Initialize mutex control block to all zeros.  */
     TX_MEMSET(mutex_ptr, 0, (sizeof(TX_MUTEX)));
 
@@ -135,11 +137,15 @@ TX_MUTEX        *previous_mutex;
     /* If trace is enabled, insert this event into the trace buffer.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_MUTEX_CREATE, mutex_ptr, inherit, TX_POINTER_TO_ULONG_CONVERT(&next_mutex), 0, TX_TRACE_MUTEX_EVENTS)
 
+    TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(mutex_ptr), mutex_ptr->tx_mutex_name)
+
     /* Log this kernel call.  */
     TX_EL_MUTEX_CREATE_INSERT
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_CREATE, TX_SUCCESS );
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

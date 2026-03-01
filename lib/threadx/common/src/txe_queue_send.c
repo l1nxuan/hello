@@ -84,6 +84,8 @@ TX_THREAD   *current_thread;
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TXE_QUEUE_SEND, TX_POINTER_TO_ULONG_CONVERT(queue_ptr), TX_POINTER_TO_ULONG_CONVERT(source_ptr), wait_option);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -152,6 +154,8 @@ TX_THREAD   *current_thread;
         /* Call actual queue send function.  */
         status =  _tx_queue_send(queue_ptr, source_ptr, wait_option);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_QUEUE_SEND, status);
 
     /* Return completion status.  */
     return(status);

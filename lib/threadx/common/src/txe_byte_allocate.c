@@ -89,6 +89,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TXE_BYTE_ALLOCATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), memory_size, wait_option);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -193,6 +195,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual byte memory allocate function.  */
         status =  _tx_byte_allocate(pool_ptr, memory_ptr, memory_size,  wait_option);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BYTE_ALLOCATE, status);
 
     /* Return completion status.  */
     return(status);

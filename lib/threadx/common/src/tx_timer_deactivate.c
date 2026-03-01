@@ -80,6 +80,8 @@ ULONG               ticks_left;
 UINT                active_timer_list;
 
 
+	TRACE_RECORD_U32(TRACE_API_TX_TIMER_DEACTIVATE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
     /* Setup internal timer pointer.  */
     internal_ptr =  &(timer_ptr -> tx_timer_internal);
 
@@ -244,6 +246,8 @@ UINT                active_timer_list;
 
     /* Restore interrupts to previous posture.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIMER_DEACTIVATE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

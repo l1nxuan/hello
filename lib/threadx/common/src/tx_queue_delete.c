@@ -84,6 +84,8 @@ TX_QUEUE        *next_queue;
 TX_QUEUE        *previous_queue;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_QUEUE_DELETE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Disable interrupts to remove the queue from the created list.  */
     TX_DISABLE
 
@@ -200,6 +202,8 @@ TX_QUEUE        *previous_queue;
 
     /* Check for preemption.  */
     _tx_thread_system_preempt_check();
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_DELETE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

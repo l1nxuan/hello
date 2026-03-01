@@ -109,6 +109,8 @@ VOID            (*events_set_notify)(struct TX_EVENT_FLAGS_GROUP_STRUCT *notify_
 #endif
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_EVENT_FLAGS_SET, TX_POINTER_TO_ULONG_CONVERT(group_ptr), flags_to_set, set_option);
+
     /* Disable interrupts to remove the semaphore from the created list.  */
     TX_DISABLE
 
@@ -617,6 +619,8 @@ VOID            (*events_set_notify)(struct TX_EVENT_FLAGS_GROUP_STRUCT *notify_
             _tx_thread_system_preempt_check();
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_SET, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

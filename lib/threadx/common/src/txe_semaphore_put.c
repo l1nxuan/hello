@@ -74,6 +74,8 @@ UINT  _txe_semaphore_put(TX_SEMAPHORE *semaphore_ptr)
 UINT        status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_SEMAPHORE_PUT, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr));
+
     /* Check for an invalid semaphore pointer.  */
     if (semaphore_ptr == TX_NULL)
     {
@@ -95,6 +97,8 @@ UINT        status;
         /* Call actual put semaphore function.  */
         status =  _tx_semaphore_put(semaphore_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_SEMAPHORE_PUT, status);
 
     /* Return completion status.  */
     return(status);

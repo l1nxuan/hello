@@ -92,6 +92,8 @@ TX_INTERRUPT_SAVE_AREA
 UINT                    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_MUTEX_PERFORMANCE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -174,6 +176,8 @@ UINT                    status;
 UINT                    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_MUTEX_PERFORMANCE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Access input arguments just for the sake of lint, MISRA, etc.  */
     if (mutex_ptr != TX_NULL)
     {
@@ -224,6 +228,8 @@ UINT                    status;
         status =  TX_FEATURE_NOT_ENABLED;
     }
 #endif
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_PERFORMANCE_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

@@ -88,6 +88,8 @@ UINT                timer_active;
 UINT                active_timer_list;
 
 
+	TRACE_RECORD_U32(TRACE_API_TX_TIMER_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -242,6 +244,8 @@ UINT                active_timer_list;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIMER_INFO_GET, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

@@ -78,6 +78,8 @@ TX_INTERRUPT_SAVE_AREA
 UINT        status;
 
 
+	TRACE_RECORD_U32(TRACE_API_TX_TIMER_ACTIVATE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
     /* Disable interrupts to put the timer on the created list.  */
     TX_DISABLE
 
@@ -129,6 +131,8 @@ UINT        status;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_TIMER_ACTIVATE, status);
 
     /* Return completion status.  */
     return(status);

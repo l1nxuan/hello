@@ -60,7 +60,7 @@ extern U32 SystemCoreClock;
 **********************************************************************
 */
 // The application name to be displayed in SystemViewer
-#define SYSVIEW_APP_NAME        	"ThreadX Demo Application"
+#define SYSVIEW_APP_NAME        	"ThreadX Application"
 
 // The target device name
 #define SYSVIEW_DEVICE_NAME     	"Cortex-M4"

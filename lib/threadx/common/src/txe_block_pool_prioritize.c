@@ -73,6 +73,7 @@ UINT  _txe_block_pool_prioritize(TX_BLOCK_POOL *pool_ptr)
 
 UINT    status;
 
+    TRACE_RECORD_U32(TRACE_API_TXE_BLOCK_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
 
     /* Check for an invalid block memory pool pointer.  */
     if (pool_ptr == TX_NULL)
@@ -95,6 +96,8 @@ UINT    status;
         /* Call actual block pool prioritize function.  */
         status =  _tx_block_pool_prioritize(pool_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BLOCK_PRIORITIZE, status);
 
     /* Return completion status.  */
     return(status);

@@ -87,6 +87,8 @@ TX_THREAD       *previous_thread;
 UINT            status;
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_MUTEX_GET, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr), wait_option);
+
     /* Disable interrupts to get an instance from the mutex.  */
     TX_DISABLE
 
@@ -403,6 +405,8 @@ UINT            status;
             status =  TX_NOT_AVAILABLE;
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_MUTEX_GET, status);
 
     /* Return completion status.  */
     return(status);

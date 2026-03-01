@@ -81,6 +81,7 @@ TX_INTERRUPT_SAVE_AREA
 
 TX_THREAD       *current_thread;
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_THREAD_TIME_SLICE_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_time_slice);
 
     /* Lockout interrupts while the thread is being resumed.  */
     TX_DISABLE
@@ -111,6 +112,8 @@ TX_THREAD       *current_thread;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_TIME_SLICE_CHANGE, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

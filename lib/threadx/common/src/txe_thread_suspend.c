@@ -76,6 +76,8 @@ UINT  _txe_thread_suspend(TX_THREAD *thread_ptr)
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_THREAD_SUSPEND, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -97,6 +99,9 @@ UINT    status;
         /* Call actual thread suspend function.  */
         status =  _tx_thread_suspend(thread_ptr);
     }
+
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_SUSPEND, status);
 
     /* Return completion status.  */
     return(status);

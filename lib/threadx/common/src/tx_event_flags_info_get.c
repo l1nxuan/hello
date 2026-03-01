@@ -86,6 +86,8 @@ UINT  _tx_event_flags_info_get(TX_EVENT_FLAGS_GROUP *group_ptr, CHAR **name, ULO
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_EVENT_FLAGS_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -137,6 +139,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_INFO_GET, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

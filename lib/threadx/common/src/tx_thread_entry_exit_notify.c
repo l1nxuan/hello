@@ -1,10 +1,10 @@
 /***************************************************************************
- * Copyright (c) 2024 Microsoft Corporation 
- * 
+ * Copyright (c) 2024 Microsoft Corporation
+ *
  * This program and the accompanying materials are made available under the
  * terms of the MIT License which is available at
  * https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: MIT
  **************************************************************************/
 
@@ -76,6 +76,8 @@
 UINT  _tx_thread_entry_exit_notify(TX_THREAD *thread_ptr, VOID (*thread_entry_exit_notify)(TX_THREAD *notify_thread_ptr, UINT id))
 {
 
+    TRACE_RECORD_U32(TRACE_API_TX_THREAD_ENTRY_EXIT, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
 #ifdef TX_DISABLE_NOTIFY_CALLBACKS
 
     TX_THREAD_NOT_USED(thread_ptr);
@@ -102,6 +104,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_ENTRY_EXIT, TX_SUCCESS);
 
     /* Return success to caller.  */
     return(TX_SUCCESS);

@@ -82,6 +82,8 @@ UINT  _txe_timer_info_get(TX_TIMER *timer_ptr, CHAR **name, UINT *active, ULONG 
 
 UINT    status;
 
+	TRACE_RECORD_U32(TRACE_API_TXE_TIMER_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
 
     /* Check for an invalid timer pointer.  */
     if (timer_ptr == TX_NULL)
@@ -104,6 +106,8 @@ UINT    status;
         /* Otherwise, call the actual timer information get service.  */
         status =  _tx_timer_info_get(timer_ptr, name, active, remaining_ticks, reschedule_ticks, next_timer);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_TIMER_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

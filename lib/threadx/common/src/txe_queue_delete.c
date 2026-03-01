@@ -80,6 +80,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_QUEUE_DELETE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -136,6 +138,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual queue delete function.  */
         status =  _tx_queue_delete(queue_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_QUEUE_DELETE, status);
 
     /* Return completion status.  */
     return(status);

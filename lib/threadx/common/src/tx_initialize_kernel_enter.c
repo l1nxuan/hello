@@ -101,6 +101,8 @@ TX_SAFETY_CRITICAL_EXCEPTION_HANDLER
 VOID  _tx_initialize_kernel_enter(VOID)
 {
 
+    TRACE_RECORD_VOID(TRACE_API_TX_KERNEL_ENTER);
+
     /* Determine if the compiler has pre-initialized ThreadX.  */
     if (_tx_thread_system_state != TX_INITIALIZE_ALMOST_DONE)
     {
@@ -163,5 +165,7 @@ VOID  _tx_initialize_kernel_enter(VOID)
     /* If we ever get here, raise safety critical exception.  */
     TX_SAFETY_CRITICAL_EXCEPTION(__FILE__, __LINE__, 0);
 #endif
+
+    TRACE_RECORD_END_CALL(TRACE_API_TX_KERNEL_ENTER);
 }
 

@@ -91,6 +91,8 @@ TX_THREAD       *current_thread;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_EVENT_FLAGS_GET, TX_POINTER_TO_ULONG_CONVERT(group_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -171,6 +173,8 @@ TX_THREAD       *current_thread;
         /* Call actual event flags get function.  */
         status =  _tx_event_flags_get(group_ptr, requested_flags, get_option, actual_flags_ptr, wait_option);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_EVENT_FLAGS_GET, status);
 
     /* Return completion status.  */
     return(status);

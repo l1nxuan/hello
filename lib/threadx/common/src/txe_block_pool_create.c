@@ -95,6 +95,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x4(TRACE_API_TXE_BLOCK_POOL_CREATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), TX_POINTER_TO_ULONG_CONVERT(pool_ptr), block_size, pool_size);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -221,6 +223,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual block pool create function.  */
         status =  _tx_block_pool_create(pool_ptr, name_ptr, block_size, pool_start, pool_size);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BLOCK_POOL_CREATE, status);
 
     /* Return completion status.  */
     return(status);

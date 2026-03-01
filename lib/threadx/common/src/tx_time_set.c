@@ -72,6 +72,8 @@
 VOID  _tx_time_set(ULONG new_time)
 {
 
+	TRACE_RECORD_U32(TRACE_API_TX_TIME_SET, new_time);
+
 TX_INTERRUPT_SAVE_AREA
 
 
@@ -89,5 +91,7 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL(TRACE_API_TX_TIME_SET);
 }
 

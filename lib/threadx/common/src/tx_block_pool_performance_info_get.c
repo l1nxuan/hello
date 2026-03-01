@@ -89,6 +89,8 @@ TX_INTERRUPT_SAVE_AREA
 UINT                    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BLOCK_POOL_PERFORMANCE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Determine if this is a legal request.  */
     if (pool_ptr == TX_NULL)
     {
@@ -157,6 +159,8 @@ UINT                    status;
 UINT                    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BLOCK_POOL_PERFORMANCE_INFO_GET, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Access input arguments just for the sake of lint, MISRA, etc.  */
     if (pool_ptr != TX_NULL)
     {
@@ -195,6 +199,8 @@ UINT                    status;
         status =  TX_FEATURE_NOT_ENABLED;
     }
 #endif
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_POOL_PERFORMANCE_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

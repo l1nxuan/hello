@@ -81,6 +81,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_BYTE_RELEASE, TX_POINTER_TO_ULONG_CONVERT(memory_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -129,6 +131,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual byte release function.  */
         status =  _tx_byte_release(memory_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BYTE_RELEASE, status);
 
     /* Return completion status.  */
     return(status);

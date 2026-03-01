@@ -78,6 +78,7 @@ UINT  _txe_thread_preemption_change(TX_THREAD *thread_ptr, UINT new_threshold, U
 
 UINT        status;
 
+	TRACE_RECORD_U32x2(TRACE_API_TXE_THREAD_PREEMTION_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_threshold);
 
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
@@ -124,6 +125,8 @@ UINT        status;
         /* Call actual change thread preemption function.  */
         status =  _tx_thread_preemption_change(thread_ptr, new_threshold, old_threshold);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_PREEMTION_CHANGE, status);
 
     /* Return completion status.  */
     return(status);

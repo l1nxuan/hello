@@ -86,6 +86,8 @@ UINT  _tx_semaphore_put_notify(TX_SEMAPHORE *semaphore_ptr, VOID (*semaphore_put
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_SEMAPHORE_PUT_NOTIFY, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -100,6 +102,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_SEMAPHORE_PUT_NOTIFY, TX_SUCCESS);
 
     /* Return success to caller.  */
     return(TX_SUCCESS);

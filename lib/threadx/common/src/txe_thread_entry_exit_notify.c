@@ -77,6 +77,8 @@ UINT  _txe_thread_entry_exit_notify(TX_THREAD *thread_ptr, VOID (*thread_entry_e
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_THREAD_ENTRY_EXIT, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -98,6 +100,8 @@ UINT    status;
         /* Call actual thread entry/exit notify function.  */
         status =  _tx_thread_entry_exit_notify(thread_ptr, thread_entry_exit_notify);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_ENTRY_EXIT, status);
 
     /* Return completion status.  */
     return(status);

@@ -84,6 +84,10 @@ int main(void)
     dac_init();
     adc_init();
 
+#if (defined(ENABLE_TRACE_API))
+    SEGGER_SYSVIEW_Conf();
+#endif
+
     // subsequent scheduling occurs from the PendSV handling routine, priority = 255
     // Systick's periodic interrupt for the timer-related services, priority = 64
     tx_kernel_enter();

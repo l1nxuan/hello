@@ -100,6 +100,7 @@ ULONG                       upper_tbu;
 ULONG                       lower_tbu;
 #endif
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_BYTE_ALLOCATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), wait_option);
 
     /* Round the memory size up to the next size that is evenly divisible by
        an ALIGN_TYPE (this is typically a 32-bit ULONG).  This guarantees proper alignment.  */
@@ -403,6 +404,8 @@ ULONG                       lower_tbu;
             status =  TX_NO_MEMORY;
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BYTE_ALLOCATE, status);
 
     /* Return completion status.  */
     return(status);

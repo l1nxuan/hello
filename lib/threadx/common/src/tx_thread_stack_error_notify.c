@@ -90,6 +90,8 @@ UINT  _tx_thread_stack_error_notify(VOID (*stack_error_handler)(TX_THREAD *threa
 UINT        status;
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_THREAD_STACK_ERROR_NOTIFY);
+
     /* Access input argument just for the sake of lint, MISRA, etc.  */
     if (stack_error_handler != TX_NULL)
     {
@@ -104,6 +106,8 @@ UINT        status;
         status =  TX_FEATURE_NOT_ENABLED;
     }
 
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_STACK_ERROR_NOTIFY, status);
+
     /* Return completion status.  */
     return(status);
 
@@ -111,6 +115,8 @@ UINT        status;
 
 TX_INTERRUPT_SAVE_AREA
 
+
+    TRACE_RECORD_VOID(TRACE_API_TX_THREAD_STACK_ERROR_NOTIFY);
 
     /* Disable interrupts.  */
     TX_DISABLE
@@ -126,6 +132,8 @@ TX_INTERRUPT_SAVE_AREA
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_STACK_ERROR_NOTIFY, TX_SUCCESS);
 
     /* Return success to caller.  */
     return(TX_SUCCESS);

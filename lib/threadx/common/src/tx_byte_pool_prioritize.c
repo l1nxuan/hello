@@ -85,6 +85,8 @@ TX_THREAD       *previous_thread;
 UINT            list_changed;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BYTE_POOL_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -243,6 +245,8 @@ UINT            list_changed;
         /* Check for preemption.  */
         _tx_thread_system_preempt_check();
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BYTE_POOL_PRIORITIZE, TX_SUCCESS);
 
     /* Return completion status.  */
     return(TX_SUCCESS);

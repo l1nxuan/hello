@@ -96,6 +96,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32x4(TRACE_API_TXE_TIMER_CREATE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr), initial_ticks, reschedule_ticks, auto_activate);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -231,6 +233,8 @@ TX_THREAD       *thread_ptr;
         status =  _tx_timer_create(timer_ptr, name_ptr, expiration_function, expiration_input,
                                                     initial_ticks, reschedule_ticks, auto_activate);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_TIMER_CREATE, status);
 
     /* Return completion status.  */
     return(status);

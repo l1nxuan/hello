@@ -85,6 +85,8 @@ UINT  _tx_event_flags_performance_system_info_get(ULONG *sets, ULONG *gets, ULON
 TX_INTERRUPT_SAVE_AREA
 
 
+    TRACE_RECORD_VOID(TRACE_API_TX_EVENT_FLAGS_PERFORMANCE_SYSTEM_INFO_GET);
+
     /* Disable interrupts.  */
     TX_DISABLE
 
@@ -128,6 +130,8 @@ TX_INTERRUPT_SAVE_AREA
     /* Restore interrupts.  */
     TX_RESTORE
 
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_PERFORMANCE_SYSTEM_INFO_GET, TX_SUCCESS);
+
     /* Return completion status.  */
     return(TX_SUCCESS);
 
@@ -135,6 +139,8 @@ TX_INTERRUPT_SAVE_AREA
 
 UINT        status;
 
+
+    TRACE_RECORD_VOID(TRACE_API_TX_EVENT_FLAGS_PERFORMANCE_SYSTEM_INFO_GET);
 
     /* Access input arguments just for the sake of lint, MISRA, etc.  */
     if (sets != TX_NULL)
@@ -167,6 +173,8 @@ UINT        status;
         /* Not enabled, return error.  */
         status =  TX_FEATURE_NOT_ENABLED;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_EVENT_FLAGS_PERFORMANCE_SYSTEM_INFO_GET, status);
 
     /* Return completion status.  */
     return(status);

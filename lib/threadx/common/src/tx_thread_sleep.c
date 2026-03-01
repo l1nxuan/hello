@@ -78,6 +78,7 @@ TX_INTERRUPT_SAVE_AREA
 UINT            status;
 TX_THREAD       *thread_ptr;
 
+	TRACE_RECORD_U32(TRACE_API_TX_THREAD_SLEEP, timer_ticks);
 
     /* Lockout interrupts while the thread is being resumed.  */
     TX_DISABLE
@@ -194,6 +195,8 @@ TX_THREAD       *thread_ptr;
     }
 
     /* Return completion status.  */
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_SLEEP, status);
+
     return(status);
 }
 

@@ -80,6 +80,8 @@ UINT  _txe_thread_priority_change(TX_THREAD *thread_ptr, UINT new_priority, UINT
 UINT        status;
 
 
+	TRACE_RECORD_U32x2(TRACE_API_TXE_THREAD_PRIORITY_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_priority);
+
     /* Check for an invalid thread pointer.  */
     if (thread_ptr == TX_NULL)
     {
@@ -126,6 +128,7 @@ UINT        status;
         status =  _tx_thread_priority_change(thread_ptr, new_priority, old_priority);
     }
 
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_PRIORITY_CHANGE, status);
     /* Return completion status.  */
     return(status);
 }

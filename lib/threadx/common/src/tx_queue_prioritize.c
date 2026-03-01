@@ -85,6 +85,8 @@ TX_THREAD       *previous_thread;
 UINT            list_changed;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_QUEUE_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Disable interrupts to place message in the queue.  */
     TX_DISABLE
 
@@ -243,6 +245,8 @@ UINT            list_changed;
         /* Check for preemption.  */
         _tx_thread_system_preempt_check();
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_PRIORITIZE, TX_SUCCESS);
 
     /* Return successful status.  */
     return(TX_SUCCESS);

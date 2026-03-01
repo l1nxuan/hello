@@ -80,6 +80,8 @@ TX_THREAD       *previous_thread;
 UINT            status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_THREAD_DELETE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -160,6 +162,8 @@ UINT            status;
         /* Restore interrupts.  */
         TX_RESTORE
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_DELETE, status);
 
     /* Return completion status.  */
     return(status);

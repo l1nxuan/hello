@@ -86,6 +86,9 @@ UINT            status;
 TX_THREAD       *current_thread;
 #endif
 
+
+    TRACE_RECORD_U32x2(TRACE_API_TXE_BLOCK_ALLOCATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), wait_option);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -154,6 +157,8 @@ TX_THREAD       *current_thread;
         /* Call actual block allocate function.  */
         status =  _tx_block_allocate(pool_ptr, block_ptr, wait_option);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BLOCK_ALLOCATE, status);
 
     /* Return completion status.  */
     return(status);

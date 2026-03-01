@@ -76,6 +76,8 @@ UINT  _txe_mutex_put(TX_MUTEX *mutex_ptr)
 UINT            status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_MUTEX_PUT, TX_POINTER_TO_ULONG_CONVERT(mutex_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -118,6 +120,8 @@ UINT            status;
         /* Call actual put mutex function.  */
         status =  _tx_mutex_put(mutex_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_MUTEX_PUT, status);
 
     /* Return completion status.  */
     return(status);

@@ -73,6 +73,8 @@ UINT  _txe_queue_prioritize(TX_QUEUE *queue_ptr)
 UINT    status;
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_QUEUE_PRIORITIZE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr));
+
     /* Check for an invalid queue pointer.  */
     if (queue_ptr == TX_NULL)
     {
@@ -92,6 +94,8 @@ UINT    status;
         /* Call actual queue prioritize function.  */
         status =  _tx_queue_prioritize(queue_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_QUEUE_PRIORITIZE, status);
 
     /* Return completion status.  */
     return(status);

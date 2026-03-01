@@ -99,6 +99,8 @@ UINT            map_index;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_THREAD_RESUME, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
 #ifdef TX_ENABLE_STACK_CHECKING
 
     /* Check this thread's stack.  */
@@ -192,6 +194,7 @@ UINT            map_index;
         /* Setup successful return status.  */
         status =  TX_SUCCESS;
 #else
+        TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_RESUME, TX_SUCCESS);
 
         /* Return successful completion.  */
         return(TX_SUCCESS);
@@ -441,6 +444,8 @@ UINT            map_index;
                             _tx_thread_system_return();
                         }
 
+                        TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_RESUME, TX_SUCCESS);
+
                         /* Return in-line when MISRA is not enabled.  */
                         return(TX_SUCCESS);
 #endif
@@ -575,6 +580,8 @@ UINT            map_index;
         }
     }
 #endif
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_RESUME, status);
 
     /* Return completion status. */
     return(status);

@@ -79,6 +79,8 @@ TX_THREAD   *current_thread;
 #endif
 
 
+	TRACE_RECORD_U32(TRACE_API_TXE_THREAD_RESET, TX_POINTER_TO_ULONG_CONVERT(thread_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -130,6 +132,8 @@ TX_THREAD   *current_thread;
         /* Call actual thread reset function.  */
         status =  _tx_thread_reset(thread_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_THREAD_RESET, status);
 
     /* Return completion status.  */
     return(status);

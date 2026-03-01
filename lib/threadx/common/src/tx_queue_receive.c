@@ -93,6 +93,8 @@ TX_THREAD       *previous_thread;
 UINT            status;
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_QUEUE_RECEIVE, TX_POINTER_TO_ULONG_CONVERT(queue_ptr), TX_POINTER_TO_ULONG_CONVERT(destination_ptr), wait_option);
+
     /* Default the status to TX_SUCCESS.  */
     status =  TX_SUCCESS;
 
@@ -480,6 +482,8 @@ UINT            status;
         /* Immediate return, return error completion.  */
         status =  TX_QUEUE_EMPTY;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_QUEUE_RECEIVE, status);
 
     /* Return completion status.  */
     return(status);

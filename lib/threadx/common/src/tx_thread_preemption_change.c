@@ -86,6 +86,7 @@ UINT        map_index;
 #endif
 UINT        status;
 
+	TRACE_RECORD_U32x2(TRACE_API_TX_THREAD_PREEMTION_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_threshold);
 
     /* Default status to success.  */
     status =  TX_SUCCESS;
@@ -274,6 +275,8 @@ UINT        status;
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+	TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_PREEMTION_CHANGE, status);
 
     /* Return completion status.  */
     return(status);

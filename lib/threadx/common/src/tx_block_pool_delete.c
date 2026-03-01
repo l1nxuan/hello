@@ -85,6 +85,8 @@ TX_BLOCK_POOL   *next_pool;
 TX_BLOCK_POOL   *previous_pool;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BLOCK_POOL_DELETE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr));
+
     /* Disable interrupts to remove the block pool from the created list.  */
     TX_DISABLE
 
@@ -201,6 +203,8 @@ TX_BLOCK_POOL   *previous_pool;
 
     /* Check for preemption.  */
     _tx_thread_system_preempt_check();
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BLOCK_POOL_DELETE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

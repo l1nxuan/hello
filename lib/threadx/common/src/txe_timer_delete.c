@@ -80,6 +80,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_TIMER_DELETE, TX_POINTER_TO_ULONG_CONVERT(timer_ptr));
+
 #ifndef TX_TIMER_PROCESS_IN_ISR
 
     /* Default status to success.  */
@@ -137,6 +139,8 @@ TX_THREAD       *thread_ptr;
         }
 #endif
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_TIMER_DELETE, status);
 
     /* Return completion status.  */
     return(status);

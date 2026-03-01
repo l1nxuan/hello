@@ -81,6 +81,8 @@ TX_THREAD       *thread_ptr;
 #endif
 
 
+    TRACE_RECORD_U32(TRACE_API_TXE_SEMAPHORE_DELETE, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr));
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -137,6 +139,8 @@ TX_THREAD       *thread_ptr;
         /* Call actual semaphore delete function.  */
         status =  _tx_semaphore_delete(semaphore_ptr);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_SEMAPHORE_DELETE, status);
 
     /* Return completion status.  */
     return(status);

@@ -83,6 +83,8 @@ UINT            priority;
 TX_THREAD       *thread_ptr;
 
 
+	TRACE_RECORD_VOID(TRACE_API_TX_THREAD_RELINQUISH);
+
     /* Pickup thread pointer.  */
     TX_THREAD_GET_CURRENT(thread_ptr)
 
@@ -166,5 +168,7 @@ TX_THREAD       *thread_ptr;
            the next thread.  */
         _tx_thread_system_return();
     }
+
+    TRACE_RECORD_END_CALL(TRACE_API_TX_THREAD_RELINQUISH);
 }
 

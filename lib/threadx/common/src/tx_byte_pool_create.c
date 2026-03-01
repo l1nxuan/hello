@@ -85,6 +85,8 @@ TX_BYTE_POOL        *previous_pool;
 ALIGN_TYPE          *free_ptr;
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_BYTE_POOL_CREATE, TX_POINTER_TO_ULONG_CONVERT(pool_ptr), TX_POINTER_TO_ULONG_CONVERT(pool_ptr), pool_size);
+
     /* Initialize the byte pool control block to all zeros.  */
     TX_MEMSET(pool_ptr, 0, (sizeof(TX_BYTE_POOL)));
 
@@ -186,11 +188,15 @@ ALIGN_TYPE          *free_ptr;
     /* If trace is enabled, insert this event into the trace buffer.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_BYTE_POOL_CREATE, pool_ptr, TX_POINTER_TO_ULONG_CONVERT(pool_start), pool_size, TX_POINTER_TO_ULONG_CONVERT(&block_ptr), TX_TRACE_BYTE_POOL_EVENTS)
 
+    TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(pool_ptr), pool_ptr->tx_byte_pool_name)
+
     /* Log this kernel call.  */
     TX_EL_BYTE_POOL_CREATE_INSERT
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BYTE_POOL_CREATE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);

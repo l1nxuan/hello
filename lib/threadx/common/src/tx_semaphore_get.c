@@ -83,6 +83,8 @@ TX_THREAD       *previous_thread;
 UINT            status;
 
 
+    TRACE_RECORD_U32x2(TRACE_API_TX_SEMAPHORE_GET, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), wait_option);
+
     /* Default the status to TX_SUCCESS.  */
     status =  TX_SUCCESS;
 
@@ -226,6 +228,8 @@ UINT            status;
         /* Immediate return, return error completion.  */
         status =  TX_NO_INSTANCE;
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_SEMAPHORE_GET, status);
 
     /* Return completion status.  */
     return(status);

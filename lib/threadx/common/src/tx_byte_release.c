@@ -95,6 +95,8 @@ UCHAR               **block_link_ptr;
 UCHAR               **suspend_info_ptr;
 
 
+    TRACE_RECORD_U32(TRACE_API_TX_BYTE_POOL_RELEASE	, TX_POINTER_TO_ULONG_CONVERT(memory_ptr));
+
     /* Default to successful status.  */
     status =  TX_SUCCESS;
 
@@ -370,6 +372,8 @@ UCHAR               **suspend_info_ptr;
             TX_RESTORE
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_BYTE_POOL_RELEASE	, status);
 
     /* Return completion status.  */
     return(status);

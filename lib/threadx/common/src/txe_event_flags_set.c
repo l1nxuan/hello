@@ -79,6 +79,8 @@ UINT  _txe_event_flags_set(TX_EVENT_FLAGS_GROUP *group_ptr, ULONG flags_to_set, 
 UINT        status;
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TXE_EVENT_FLAGS_SET, TX_POINTER_TO_ULONG_CONVERT(group_ptr), flags_to_set, set_option);
+
     /* Default status to success.  */
     status =  TX_SUCCESS;
 
@@ -120,6 +122,8 @@ UINT        status;
         /* Call actual event flags set function.  */
         status =  _tx_event_flags_set(group_ptr, flags_to_set, set_option);
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_EVENT_FLAGS_SET, status);
 
     /* Return completion status.  */
     return(status);

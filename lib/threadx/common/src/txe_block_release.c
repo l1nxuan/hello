@@ -76,6 +76,7 @@ TX_BLOCK_POOL       *pool_ptr;
 UCHAR               **indirect_ptr;
 UCHAR               *work_ptr;
 
+    TRACE_RECORD_U32(TRACE_API_TXE_BLOCK_RELEASE, TX_POINTER_TO_ULONG_CONVERT(block_ptr));
 
     /* First check the supplied pointer.  */
     if (block_ptr == TX_NULL)
@@ -117,6 +118,8 @@ UCHAR               *work_ptr;
             status =  _tx_block_release(block_ptr);
         }
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TXE_BLOCK_RELEASE, status);
 
     /* Return completion status.  */
     return(status);

@@ -94,6 +94,8 @@ TX_THREAD       *execute_ptr;
 TX_THREAD       *next_execute_ptr;
 UINT            original_priority;
 
+	TRACE_RECORD_U32x2(TRACE_API_TX_THREAD_PRIORITY_CHANGE, TX_POINTER_TO_ULONG_CONVERT(thread_ptr), new_priority);
+
 
     /* Lockout interrupts while the thread is being suspended.  */
     TX_DISABLE
@@ -279,6 +281,8 @@ UINT            original_priority;
         /* Check for preemption.  */
         _tx_thread_system_preempt_check();
     }
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_THREAD_PRIORITY_CHANGE, TX_SUCCESS);
 
     /* Return success if we get here!  */
     return(TX_SUCCESS);

@@ -80,6 +80,8 @@ TX_SEMAPHORE    *next_semaphore;
 TX_SEMAPHORE    *previous_semaphore;
 
 
+    TRACE_RECORD_U32x3(TRACE_API_TX_SEMAPHORE_CREATE, TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), initial_count);
+
     /* Initialize semaphore control block to all zeros.  */
     TX_MEMSET(semaphore_ptr, 0, (sizeof(TX_SEMAPHORE)));
 
@@ -131,11 +133,15 @@ TX_SEMAPHORE    *previous_semaphore;
     /* If trace is enabled, insert this event into the trace buffer.  */
     TX_TRACE_IN_LINE_INSERT(TX_TRACE_SEMAPHORE_CREATE, semaphore_ptr, initial_count, TX_POINTER_TO_ULONG_CONVERT(&next_semaphore), 0, TX_TRACE_SEMAPHORE_EVENTS)
 
+    TRACE_NAME_RESOURCE(TX_POINTER_TO_ULONG_CONVERT(semaphore_ptr), semaphore_ptr->tx_semaphore_name)
+
     /* Log this kernel call.  */
     TX_EL_SEMAPHORE_CREATE_INSERT
 
     /* Restore interrupts.  */
     TX_RESTORE
+
+    TRACE_RECORD_END_CALL_U32(TRACE_API_TX_SEMAPHORE_CREATE, TX_SUCCESS);
 
     /* Return TX_SUCCESS.  */
     return(TX_SUCCESS);
