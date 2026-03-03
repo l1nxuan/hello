@@ -56,7 +56,7 @@ VOID display_1_thread_entry(ULONG thread_input)
 void display_1_thread_create(void)
 {
     // while LVGL timers
-    (VOID) tx_thread_create(&display_1_thread, "display 1", display_1_thread_entry, 0,
+    (VOID) tx_thread_create(&display_1_thread, "Display 1", display_1_thread_entry, 0,
         display_1_thread_stack, DISPLAY_1_THREAD_STACK_SIZE, DISPLAY_1_THREAD_PRIORITY, DISPLAY_1_THREAD_PRIORITY,
         TX_NO_TIME_SLICE, TX_AUTO_START);
 }

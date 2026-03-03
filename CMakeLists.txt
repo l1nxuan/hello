@@ -122,7 +122,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     LV_LVGL_H_INCLUDE_SIMPLE
     LV_KCONFIG_IGNORE
     # LV_DISABLE_API_MAPPING
-    ENABLE_TRACE_API
+    # ENABLE_TRACE_API
     $<$<CONFIG:Debug>:DEBUG>
 )
 target_compile_options(${PROJECT_NAME} PRIVATE

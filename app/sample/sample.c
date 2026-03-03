@@ -44,7 +44,7 @@ VOID sample_thread_entry(ULONG thread_input)
 
 void sample_thread_create(void)
 {
-    (VOID) tx_thread_create(&convert_thread, "convert", sample_thread_entry, 0,
+    (VOID) tx_thread_create(&convert_thread, "Sample", sample_thread_entry, 0,
         convert_thread_stack, SAMPLE_THREAD_STACK_SIZE, SAMPLE_THREAD_PRIORITY, SAMPLE_THREAD_PRIORITY,
         TX_NO_TIME_SLICE, TX_AUTO_START);
 }

@@ -140,6 +140,7 @@ Notes:
 #define TRACE_API_TX_TIMER_INFO_GET                           (112u)
 #define TRACE_API_TX_TIMER_PERFORMANCE_INFO_GET               (113u)
 #define TRACE_API_TX_TIMER_PERFORMANCE_SYSTEM_INFO_GET        (114u)
+
 #define TRACE_API_TXE_BLOCK_ALLOCATE                          (115u)
 #define TRACE_API_TXE_BLOCK_POOL_CREATE                       (116u)
 #define TRACE_API_TXE_BLOCK_POOL_DELETE                       (117u)
@@ -201,6 +202,7 @@ Notes:
 #define TRACE_API_TXE_TIMER_DELETE                            (173u)
 #define TRACE_API_TXE_TIMER_INFO_GET                          (174u)
 
+#if (defined(ENABLE_TRACE_API))
 
 #define TRACE_RECORD_VOID(a)                                  SEGGER_SYSVIEW_RecordVoid(a)
 #define TRACE_RECORD_U32(a, b)                                SEGGER_SYSVIEW_RecordU32(a, b)
@@ -220,5 +222,27 @@ Notes:
 #define TRACE_NAME_RESOURCE(a, b)                             SEGGER_SYSVIEW_NameResource(a, b);
 
 #define TRACE_ON_TASK_START_READY(a)                          SEGGER_SYSVIEW_OnTaskStartReady(a);
+
+#else
+
+#define TRACE_RECORD_VOID(a)                                  ((void)0);
+#define TRACE_RECORD_U32(a, b)                                ((void)0);
+#define TRACE_RECORD_U32x2(a, b, c)                           ((void)0);
+#define TRACE_RECORD_U32x3(a, b, c, d)                        ((void)0);
+#define TRACE_RECORD_U32x4(a, b, c, d, e)                     ((void)0);
+#define TRACE_RECORD_U32x5(a, b, c, d, e, f)                  ((void)0);
+#define TRACE_RECORD_U32x6(a, b, c, d, e, f, g)               ((void)0);
+#define TRACE_RECORD_U32x7(a, b, c, d, e, f, g, h)            ((void)0);
+#define TRACE_RECORD_U32x8(a, b, c, d, e, f, g, h, i)         ((void)0);
+#define TRACE_RECORD_U32x9(a, b, c, d, e, f, g, h, i, j)      ((void)0);
+#define TRACE_RECORD_U32x10(a, b, c, d, e, f, g, h, i, j, k)  ((void)0);
+#define TRACE_RECORD_ENTER_TIMER(a)                           ((void)0);
+#define TRACE_RECORD_EXIT_TIMER()                             ((void)0);
+#define TRACE_RECORD_END_CALL(a)                              ((void)0);
+#define TRACE_RECORD_END_CALL_U32(a, b)                       ((void)0);
+#define TRACE_NAME_RESOURCE(a, b)                             ((void)0);
+#define TRACE_ON_TASK_START_READY(a)                          ((void)0);
+
+#endif // ENABLE_TRACE_API
 
 #endif /* SEGGER_SEGGER_SYSVIEW_THREADX_H_ */
